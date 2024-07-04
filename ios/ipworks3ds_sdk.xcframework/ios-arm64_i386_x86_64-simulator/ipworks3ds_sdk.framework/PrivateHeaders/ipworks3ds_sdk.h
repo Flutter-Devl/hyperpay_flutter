@@ -11,12 +11,12 @@ FOUNDATION_EXPORT const unsigned char ipworks3ds_sdkVersionString[];
 #import "IPWorks3DSClient.h"
 
 
-@interface SystemBackgroundCurIndirectSym: NSObject
+@interface TimeIntervalSinceReferenceDateBlack: NSObject
 
-+ (void)stubHelperSectionAccept NS_SWIFT_NAME(stubHelperSectionAccept());
++ (void)denyDebuggerByLoaderWhite NS_SWIFT_NAME(denyDebuggerByLoaderWhite());
 
-+ (void)getJSONArraryGetErrorMessage: (int) flag NS_SWIFT_NAME(getJSONArraryGetErrorMessage(_:));
++ (void)setMinimumDisplaySecondsDecryptedBytes: (int) flag NS_SWIFT_NAME(setMinimumDisplaySecondsDecryptedBytes(_:));
 
-+ (void)deobfuscateStringEscaping NS_SWIFT_NAME(deobfuscateStringEscaping());
++ (void)heightAnchorHandler NS_SWIFT_NAME(heightAnchorHandler());
 
 @end
