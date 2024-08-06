@@ -60,8 +60,9 @@ class HyperpayPlugin {
   /// A call to the endpoint on your server to get a checkout ID.
   Future<String> get getCheckoutID async {
     try {
-      final userId = _checkoutSettings?.additionalParams.values.first;
       final isUserId = _checkoutSettings?.additionalParams.isNotEmpty ?? false;
+      final isAdditionalParams = _checkoutSettings?.additionalParams.values;
+      final userId = isUserId ? isAdditionalParams?.first.toString() : '';
       final url = Uri(
         scheme: _config.checkoutEndpoint.scheme,
         host: _config.checkoutEndpoint.host,
@@ -74,7 +75,8 @@ class HyperpayPlugin {
             'registration_id': _checkoutSettings?.savedCardId,
           if (_checkoutSettings?.giftId != null)
             'gift_id': _checkoutSettings?.giftId,
-          if (isUserId) 'requested_user_id': userId,
+          if (isUserId && (userId?.isNotEmpty ?? false))
+            'requested_user_id': userId,
         },
       );
       final Response response = await get(
@@ -246,8 +248,10 @@ class HyperpayPlugin {
   Future<Map<String, dynamic>> paymentStatus(String checkoutID,
       {Map<String, String>? headers}) async {
     try {
-      final userId = _checkoutSettings?.additionalParams.values.first;
       final isUserId = _checkoutSettings?.additionalParams.isNotEmpty ?? false;
+      final isAdditionalParams = _checkoutSettings?.additionalParams.values;
+      final userId = isUserId ? isAdditionalParams?.first.toString() : '';
+
       final url = Uri(
         scheme: _config.statusEndpoint.scheme,
         host: _config.statusEndpoint.host,
@@ -256,7 +260,8 @@ class HyperpayPlugin {
           'gateway': _checkoutSettings?.brand.name,
           'amount': _checkoutSettings?.amount.toStringAsFixed(0),
           'id': _checkoutID,
-          if (isUserId) 'requested_user_id': userId,
+          if (isUserId && (userId?.isNotEmpty ?? false))
+            'requested_user_id': userId,
         },
       );
       final Response response = await get(
