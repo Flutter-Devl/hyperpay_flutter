@@ -61,8 +61,14 @@ class HyperpayPlugin {
   Future<String> get getCheckoutID async {
     try {
       final isUserId = _checkoutSettings?.additionalParams.isNotEmpty ?? false;
-      final isAdditionalParams = _checkoutSettings?.additionalParams.values;
-      final userId = isUserId ? isAdditionalParams?.first.toString() : '';
+      final userId = isUserId
+          ? _checkoutSettings?.additionalParams['requested_user_id'].toString()
+          : '';
+      final startDate =
+          isUserId ? _checkoutSettings?.additionalParams['start_date'] : null;
+      final expiryDate =
+          isUserId ? _checkoutSettings?.additionalParams['expiry_date'] : null;
+
       final url = Uri(
         scheme: _config.checkoutEndpoint.scheme,
         host: _config.checkoutEndpoint.host,
@@ -77,6 +83,8 @@ class HyperpayPlugin {
             'gift_id': _checkoutSettings?.giftId,
           if (isUserId && (userId?.isNotEmpty ?? false))
             'requested_user_id': userId,
+          if (startDate != null) 'start_date': startDate,
+          if (expiryDate != null) 'expiry_date': expiryDate,
         },
       );
       final Response response = await get(
@@ -249,8 +257,13 @@ class HyperpayPlugin {
       {Map<String, String>? headers}) async {
     try {
       final isUserId = _checkoutSettings?.additionalParams.isNotEmpty ?? false;
-      final isAdditionalParams = _checkoutSettings?.additionalParams.values;
-      final userId = isUserId ? isAdditionalParams?.first.toString() : '';
+      final userId = isUserId
+          ? _checkoutSettings?.additionalParams['requested_user_id'].toString()
+          : '';
+      final startDate =
+          isUserId ? _checkoutSettings?.additionalParams['start_date'] : null;
+      final expiryDate =
+          isUserId ? _checkoutSettings?.additionalParams['expiry_date'] : null;
 
       final url = Uri(
         scheme: _config.statusEndpoint.scheme,
@@ -262,6 +275,8 @@ class HyperpayPlugin {
           'id': _checkoutID,
           if (isUserId && (userId?.isNotEmpty ?? false))
             'requested_user_id': userId,
+          if (startDate != null) 'start_date': startDate,
+          if (expiryDate != null) 'expiry_date': expiryDate,
         },
       );
       final Response response = await get(
