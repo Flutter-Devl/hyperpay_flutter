@@ -83,8 +83,8 @@ class HyperpayPlugin {
             'gift_id': _checkoutSettings?.giftId,
           if (isUserId && (userId?.isNotEmpty ?? false))
             'requested_user_id': userId,
-          if (startDate != null) 'start_date': startDate,
-          if (expiryDate != null) 'expiry_date': expiryDate,
+          if (startDate != null) 'start_date': startDate.toString(),
+          if (expiryDate != null) 'expiry_date': expiryDate.toString(),
         },
       );
       final Response response = await get(
@@ -275,8 +275,8 @@ class HyperpayPlugin {
           'id': _checkoutID,
           if (isUserId && (userId?.isNotEmpty ?? false))
             'requested_user_id': userId,
-          if (startDate != null) 'start_date': startDate,
-          if (expiryDate != null) 'expiry_date': expiryDate,
+          if (startDate != null) 'start_date': startDate.toString(),
+          if (expiryDate != null) 'expiry_date': expiryDate.toString(),
         },
       );
       final Response response = await get(
