@@ -75,7 +75,7 @@ class HyperpayPlugin {
         path: _config.checkoutEndpoint.path,
         queryParameters: {
           'gateway': _checkoutSettings?.brand.name,
-          'amount': _checkoutSettings?.amount.toStringAsFixed(0),
+          'amount': _checkoutSettings?.amount,
           'recurring': _checkoutSettings?.isRecurring,
           if (_checkoutSettings?.savedCardId != null)
             'registration_id': _checkoutSettings?.savedCardId,
@@ -271,7 +271,7 @@ class HyperpayPlugin {
         path: _config.statusEndpoint.path,
         queryParameters: {
           'gateway': _checkoutSettings?.brand.name,
-          'amount': _checkoutSettings?.amount.toStringAsFixed(0),
+          'amount': _checkoutSettings?.amount,
           'id': _checkoutID,
           if (isUserId && (userId?.isNotEmpty ?? false))
             'requested_user_id': userId,
