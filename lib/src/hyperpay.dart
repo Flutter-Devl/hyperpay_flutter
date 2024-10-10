@@ -61,8 +61,7 @@ class HyperpayPlugin {
   Future<String> get getCheckoutID async {
     try {
       final isUserId = _checkoutSettings?.additionalParams.isNotEmpty ?? false;
-      final userId =
-          _checkoutSettings?.additionalParams['requested_user_id'].toString();
+      final userId = _checkoutSettings?.additionalParams['requested_user_id'];
       final startDate =
           isUserId ? _checkoutSettings?.additionalParams['start_date'] : null;
       final expiryDate =
@@ -80,7 +79,7 @@ class HyperpayPlugin {
             'registration_id': _checkoutSettings?.savedCardId,
           if (_checkoutSettings?.giftId != null)
             'gift_id': _checkoutSettings?.giftId,
-          if (userId?.isNotEmpty ?? false) 'requested_user_id': userId,
+          if (userId != null) 'requested_user_id': userId.toString(),
           if (startDate != null) 'start_date': startDate.toString(),
           if (expiryDate != null) 'expiry_date': expiryDate.toString(),
         },
@@ -255,8 +254,7 @@ class HyperpayPlugin {
       {Map<String, String>? headers}) async {
     try {
       final isUserId = _checkoutSettings?.additionalParams.isNotEmpty ?? false;
-      final userId =
-          _checkoutSettings?.additionalParams['requested_user_id'].toString();
+      final userId = _checkoutSettings?.additionalParams['requested_user_id'];
       final startDate =
           isUserId ? _checkoutSettings?.additionalParams['start_date'] : null;
       final expiryDate =
@@ -270,7 +268,7 @@ class HyperpayPlugin {
           'gateway': _checkoutSettings?.brand.name,
           'amount': _checkoutSettings?.amount.toString(),
           'id': _checkoutID,
-          if (userId?.isNotEmpty ?? false) 'requested_user_id': userId,
+          if (userId != null) 'requested_user_id': userId.toString(),
           if (startDate != null) 'start_date': startDate.toString(),
           if (expiryDate != null) 'expiry_date': expiryDate.toString(),
         },
