@@ -66,12 +66,15 @@ class HyperpayPlugin {
           isUserId ? _checkoutSettings?.additionalParams['start_date'] : null;
       final expiryDate =
           isUserId ? _checkoutSettings?.additionalParams['expiry_date'] : null;
+      final ignoreToken =
+          _checkoutSettings?.additionalParams['is_family_non_mada_card_update'] ?? '0';
 
       final url = Uri(
         scheme: _config.checkoutEndpoint.scheme,
         host: _config.checkoutEndpoint.host,
         path: _config.checkoutEndpoint.path,
         queryParameters: {
+          'is_family_non_mada_card_update': ignoreToken,
           'gateway': _checkoutSettings?.brand.name,
           'amount': _checkoutSettings?.amount.toString(),
           'recurring': _checkoutSettings?.isRecurring,
@@ -259,12 +262,15 @@ class HyperpayPlugin {
           isUserId ? _checkoutSettings?.additionalParams['start_date'] : null;
       final expiryDate =
           isUserId ? _checkoutSettings?.additionalParams['expiry_date'] : null;
+      final ignoreToken =
+          _checkoutSettings?.additionalParams['is_family_non_mada_card_update'] ?? '0';
 
       final url = Uri(
         scheme: _config.statusEndpoint.scheme,
         host: _config.statusEndpoint.host,
         path: _config.statusEndpoint.path,
         queryParameters: {
+          'is_family_non_mada_card_update': ignoreToken,
           'gateway': _checkoutSettings?.brand.name,
           'amount': _checkoutSettings?.amount.toString(),
           'id': _checkoutID,
