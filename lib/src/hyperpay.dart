@@ -68,7 +68,7 @@ class HyperpayPlugin {
           isUserId ? _checkoutSettings?.additionalParams['expiry_date'] : null;
       final ignoreToken = _checkoutSettings
               ?.additionalParams['is_family_non_mada_card_update'] ??
-          0;
+          '0';
 
       final url = Uri(
         scheme: _config.checkoutEndpoint.scheme,
@@ -265,7 +265,7 @@ class HyperpayPlugin {
           isUserId ? _checkoutSettings?.additionalParams['expiry_date'] : null;
       final ignoreToken = _checkoutSettings
               ?.additionalParams['is_family_non_mada_card_update'] ??
-          0;
+          '0';
 
       final url = Uri(
         scheme: _config.statusEndpoint.scheme,
