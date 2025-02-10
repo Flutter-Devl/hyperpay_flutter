@@ -89,7 +89,8 @@ class HyperpayPlugin {
           if (userId != null) 'requested_user_id': userId.toString(),
           if (startDate != null) 'start_date': startDate.toString(),
           if (expiryDate != null) 'expiry_date': expiryDate.toString(),
-          if (categoryAmount != null) 'categories[0][amount]': categoryAmount,
+          if (categoryAmount != null)
+            'categories[0][amount]': categoryAmount.toString(),
           if (categoryId != null) 'categories[0][id]': categoryId,
         },
       );
